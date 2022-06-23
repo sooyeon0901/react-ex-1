@@ -3,12 +3,16 @@ import Content from './Content';
 import Footer from './Footer';
 import Header from './Header';
 
-const Page = ({ isDark, setIsDark }) => {
+const Page = () => {
+  // context로 전달한 정보 받아오기 
+  // const data = useContext(ThemeContext);
+  // console.log('data =',data);
+
   return (
     <div className="page">
-      <Header isDark={isDark}/>
-      <Footer isDark={isDark} setIsDark={setIsDark}/>
-      <Content isDark={isDark}/>
+      <Header/>
+      <Footer/>
+      <Content/>
     </div>
   )
 }
