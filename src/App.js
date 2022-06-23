@@ -1,6 +1,6 @@
 
 import './App.css';
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import Timer from './component/Timer';
 
 function App() {
@@ -33,7 +33,25 @@ function App() {
 
   })
 
+  // useRef
+  const countRef = useRef(0);
+  console.log(countRef);
+  console.log(countRef.current);
+  const increaseCountState = () => {
+    setCount(count +1);
+  }
+  const increaseCountRef = () => {
+    countRef.current = countRef.current +1;
+  }
+
   const [ showTimer, setShowTimer ] = useState(false);
+
+  //useRef() 로 DOM 접근 
+  const inputRef = useRef();
+  useEffect(() => {
+    console.log(inputRef);
+    inputRef.current.focus();
+  }, [])
 
   return (
     <div>
@@ -50,6 +68,16 @@ function App() {
 
       {showTimer && <Timer/>}
       <button onClick={() => setShowTimer(!showTimer)}>Toggle Timer</button>
+
+      <p>State : {count}</p>
+      <p>Ref : {countRef.current}</p>
+      <button onClick={increaseCountState}>State 올리기</button>
+      <button onClick={increaseCountRef}>Ref 올리기</button>
+
+      <br/><br/><br/>
+
+      <input type="text" ref={inputRef} placeholder='이름을 입력하세요.'/>
+      <button>로그인</button>
     </div>
   );
 }
